@@ -34,8 +34,6 @@ class RegisterCaches implements ProcessInterface
             return;
         }
 
-        var_dump($this->container->getParameter('jmg.cache_paths'));
-
         if (!($paths = $this->container->getParameter('jmg.cache_paths')) || empty($paths)) {
             $this->registerDefaultCache();
 
@@ -52,9 +50,6 @@ class RegisterCaches implements ProcessInterface
      */
     private function registerDefaultCache()
     {
-        var_dump('default cache');
-        die;
-
         $resolver = $this->container->getDefinition('jmg.cache_resolver');
         $cache    = $this->container->getDefinition('jmg.cache_filesystem');
         $cache->setScope(ContainerInterface::SCOPE_CONTAINER);

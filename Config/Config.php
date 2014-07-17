@@ -38,15 +38,7 @@ class Config extends PackageConfiguration
 
         $this->prepareDynamicRoutes($config);
         $this->prepareCaches($config);
-        //var_dump($config);
-        //die;
-        //var_dump($builder->getContainer()->getParameters()->resolve()->all());
-        //die;
-
-        //var_dump($config);
-        //die;
-        //var_dump($builder->getContainer()->getParameters()->resolveParam($config));
-        //die;
+        $this->prepareTrustedSites($config);
     }
 
     /**
@@ -77,6 +69,25 @@ class Config extends PackageConfiguration
         $this->setParameter('jmg.cache_paths', $this->getDefault($config['cache'], 'paths', []));
     }
 
+    /**
+     * prepareTrustedSites
+     *
+     * @param array $config
+     *
+     * @return void
+     */
+    private function prepareTrustedSites(array $config)
+    {
+        $this->setParameter('jmg.trusted_sites', $this->getDefault($config, 'trusted_sites', []));
+    }
+
+    /**
+     * prepareConstraints
+     *
+     * @param array $config
+     *
+     * @return void
+     */
     private function prepareConstraints(array $config)
     {
         $constraints = [];

@@ -31,11 +31,14 @@ class RegisterResolver implements ProcessInterface
     {
         $this->container = $container;
 
-        if (!$this->container->getParameter('jmg.cache_enabled')) {
-            return;
+        if ($this->container->getParameter('jmg.cache_enabled')) {
+            $this->registerCacheResolver();
         }
 
-        $this->registerCacheResolver();
+        if (($sites = $this->container->getParameter('jmg.trusted_sites')) && !empty($sites)) {
+            $this->addSiteConstraits($sites);
+        }
+
     }
 
     /**
@@ -47,5 +50,18 @@ class RegisterResolver implements ProcessInterface
     {
         $def = $this->container->getDefinition('jmg.resolver_image');
         $def->replaceArgument(new Reference('jmg.cache_resolver'), 1);
+    }
+
+    /**
+     * addSiteConstraits
+     *
+     * @param array $sites
+     *
+     * @return void
+     */
+    private function addSiteConstraits(array $sites)
+    {
+        $def = $this->container->getDefinition('jmg.loader_curl');
+        $def->setArguments([$sites]);
     }
 }
