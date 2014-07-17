@@ -1,0 +1,23 @@
+{
+  "name":"thapp/jmg-package",
+  "description": "Jitimage package for selene",
+  "authors": [
+    {
+      "name": "Thomas Appel",
+      "email": "mail@thomas-appel.com"
+    }
+  ],
+  "license":"MIT",
+  "require": {
+    "thapp/jitimage":"dev-v0_2"
+  },
+  "require-dev": {
+    "phpunit/phpunit":"~4.0"
+  },
+  "autoload": {
+    "psr-4":{
+      "Thapp\\Jmg\\":""
+    } 
+  },
+  "minimum-stability":"dev"
+}

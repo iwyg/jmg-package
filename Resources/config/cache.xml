@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container>
+  <parameters>
+    <parameter id="jmg.cache_enabled">true</parameter>
+    <parameter id="jmg.cache_suffix">cached</parameter>
+    <parameter id="jmg.cache_path">%public_path%/cache</parameter>
+    <parameter id="jmg.cache_filesystem.class">Thapp\Image\Cache\FilesystemCache</parameter>
+    <parameter id="jmg.cache_hybrid.class">Thapp\Image\Cache\HybridCache</parameter>
+    <parameter id="jmg.cache_memcached.class">Thapp\Image\Cache\MemcachedCache</parameter>
+    <parameter id="jmg.cache_memcached_client.class">Thapp\Image\Cache\MemcachedClient</parameter>
+    <parameter id="jmg.cache_resolver.class">Thapp\JitImage\Resolver\CacheResolver</parameter>
+  </parameters>
+
+  <services>
+
+    <service id="jmg.cache_filesystem" class="%jmg.cache_filesystem.class%" scope="prototype">
+    </service>
+
+    <service id="jmg.cache_hybrid" class="%jmg.cache_hybrid.class%" scope="prototype">
+      <arguments>
+        <argument>$jmg.cache_memcached_client</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.cache_memcached" class="%jmg.cache_memcached.class%" scope="prototype">
+      <arguments>
+        <argument>$jmg.cache_memcached_client</argument>
+      </arguments>
+    </service>
+
+
+    <service id="jmg.cache_memcached_client" class="%jmg.cache_memcached_client.class%" internal="true">
+    </service>
+
+    <service id="jmg.cache_resolver" class="%jmg.cache_resolver.class%">
+    </service>
+
+  </services>
+</container>

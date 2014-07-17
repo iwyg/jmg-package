@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container>
+  <imports>
+    <import>drivers.xml</import>
+    <import>cache.xml</import>
+  </imports>
+
+  <parameters>
+    <parameter id="jmg.controller.class">Thapp\Jmg\Controller\ImageController</parameter>
+    <parameter id="jmg.resolver_path.class">Thapp\JitImage\Resolver\PathResolver</parameter>
+    <parameter id="jmg.resolver_image.class">Thapp\JitImage\Resolver\ImageResolver</parameter>
+    <parameter id="jmg.image_processor.class">Thapp\JitImage\JitImageProcessor</parameter>
+    <parameter id="jmg.constraints.class">Thapp\JitImage\Validator\ModeConstraints</parameter>
+  </parameters>
+
+  <services>
+    <service id="jmg.controller" class="%jmg.controller.class%">
+      <arguments>
+        <argument>$jmg.resolver_path</argument>
+        <argument>$jmg.resolver_image</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.resolver_path" class="%jmg.resolver_path.class%" internal="true">
+      <arguments>
+        <argument>%jmg.paths%</argument>
+      </arguments>
+    </service>
+    <service id="jmg.resolver_image" class="%jmg.resolver_image.class%" internal="true">
+      <arguments>
+        <argument>$jmg.image_processor</argument>
+        <argument>%app.null%</argument>
+        <argument>$jmg.constraints</argument>
+      </arguments>
+    </service>
+    <service id="jmg.image_processor" class="%jmg.image_processor.class%" internal="true">
+      <arguments>
+        <argument>$jmg.image_driver</argument>
+      </arguments>
+    </service>
+    <service id="jmg.constraints" class="%jmg.constraints.class%" internal="true">
+      <arguments>
+        <argument>%jmg.mode_constraints%</argument>
+      </arguments>
+    </service>
+  </services>
+</container>

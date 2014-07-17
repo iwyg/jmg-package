@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container>
+  <parameters>
+    <parameter id="jmg.driver">gd</parameter>
+    <parameter id="jmg.driver_gd.class">Thapp\Image\Driver\GdDriver</parameter>
+    <parameter id="jmg.driver_im.class">Thapp\Image\Driver\ImDriver</parameter>
+    <parameter id="jmg.driver_imagick.class">Thapp\Image\Driver\ImagickDriver</parameter>
+    <parameter id="jmg.loader_filesystem.class">Thapp\Image\Loader\FilesystemLoader</parameter>
+    <parameter id="jmg.loader_curl.class">Thapp\Image\Loader\RemoteLoader</parameter>
+    <parameter id="jmg.loader_flysystem.class">Thapp\JitImage\Adapter\FlysystemLoader</parameter>
+    <parameter id="jmg.loader_delegating.class">Thapp\Image\Loader\DelegatingLoader</parameter>
+  </parameters>
+
+  <services>
+
+    <service id="jmg.driver_gd" class="%jmg.driver_gd.class%" internal="true">
+      <arguments>
+        <argument>$jmg.image_loader</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.driver_im" class="%jmg.driver_im.class%" internal="true">
+      <arguments>
+        <argument>$jmg.image_loader</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.driver_imagick" class="%jmg.driver_imagick.class%" internal="true">
+      <arguments>
+        <argument>$jmg.image_loader</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.loader_filesystem" class="%jmg.loader_filesystem.class%" internal="true">
+    </service>
+
+    <service id="jmg.loader_curl" class="%jmg.loader_curl.class%" internal="true">
+    </service>
+
+    <service id="jmg.loader_flysystem" class="%jmg.loader_flysystem.class%" internal="true">
+    </service>
+
+  </services>
+</container>

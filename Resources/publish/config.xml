@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config package="jmg">
+
+  <paths>
+    <image>%public_path%/image</image>
+    <thumbs>%public_path%/thumbs</thumbs>
+  </paths>
+
+  <defaultPath>image</defaultPath>
+
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Predefined parameters
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <recipes>
+    <image>
+      <gallery>1/800/0</gallery>
+      <thumbs>2/200/200/5</thumbs>
+    </image>
+  </recipes>
+
+  <disableDynamicProcessing>false</disableDynamicProcessing>
+
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Processing constriants
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <modeConstraints>
+    <modeConstraint mode="0">
+      <values>
+        <value>2000</value>
+        <value>2000</value>
+      </values>
+    </modeConstraint>
+  </modeConstraints>
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Image caching
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <cache>
+    <enabaled>true</enabaled>
+    <suffix>cached</suffix>
+    <path>%public_path%/cache</path>
+    <paths>
+      <image>
+        <enabled>true</enabled>
+      </image>
+      <thumbs>
+        <enabled>true</enabled>
+        <service>my_other_service</service>
+      </thumbs>
+    </paths>
+  </cache>
+
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  The processing driver
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <driver>im</driver>
+
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Image loaders
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <loaders>
+    <loader>jmg.filesystem_loader</loader>
+    <loader>jmg.curl_loader</loader>
+    <loader>jmg.flysystem_loader</loader>
+  </loaders>
+
+  <!--
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  if using the cUrl loader, specify a list of trusted sites
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <trustedSites>
+    <trustedSite>http://[0-9]+.media.tumblr.(com|de|net)</trustedSite>
+  </trustedSites>
+</config>
