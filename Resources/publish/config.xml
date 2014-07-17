@@ -2,15 +2,23 @@
 
 <config package="jmg">
 
+  <!--
+  =============================================================
+  Paths to register
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
   <paths>
     <image>%public_path%/image</image>
     <thumbs>%public_path%/thumbs</thumbs>
   </paths>
-
-  <defaultPath>image</defaultPath>
-
   <!--
+  =============================================================
+  Default path
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <defaultPath>image</defaultPath>
+  <!--
+  =============================================================
   Predefined parameters
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
@@ -20,11 +28,14 @@
       <thumbs>2/200/200/5</thumbs>
     </image>
   </recipes>
-
-  <disableDynamicProcessing>false</disableDynamicProcessing>
-
   <!--
+  =============================================================
+  Do not allow dynamic routes.
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  -->
+  <disableDynamicProcessing>false</disableDynamicProcessing>
+  <!--
+  =============================================================
   Processing constriants
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
@@ -37,7 +48,7 @@
     </modeConstraint>
   </modeConstraints>
   <!--
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  =============================================================
   Image caching
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
@@ -51,31 +62,30 @@
       </image>
       <thumbs>
         <enabled>true</enabled>
-        <service>my_other_service</service>
+        <service>jmg.cache_filesystem</service>
       </thumbs>
     </paths>
   </cache>
 
   <!--
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  =============================================================
   The processing driver
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
   <driver>im</driver>
 
   <!--
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  =============================================================
   Image loaders
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
   <loaders>
-    <loader>jmg.filesystem_loader</loader>
-    <loader>jmg.curl_loader</loader>
-    <loader>jmg.flysystem_loader</loader>
+    <loader>jmg.loader_filesystem</loader>
+    <loader>jmg.loader_curl</loader>
   </loaders>
 
   <!--
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  =============================================================
   if using the cUrl loader, specify a list of trusted sites
   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   -->
