@@ -57,7 +57,7 @@ class RegisterRoutes implements ProcessInterface
         $paths = $this->container->getParameter('jmg.paths');
 
         if (!$this->container->getParameter('jmg.disable_dynamic_processing')) {
-            //$this->setupDynamicRoutes($loader = $this->getLoader(), $paths);
+            $this->setupDynamicRoutes($loader = $this->getLoader(), $paths);
         }
 
         $this->setupStaticRoutes($loader, $this->container->getParameter('jmg.recipes'), $paths);

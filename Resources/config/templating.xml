@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container>
   <parameters>
-    <parameter id="templating" type="array">
-      <parameters>
-        <parameter key="twig">true</parameter>
-      </parameters>
+    <parameter id="jmg.templating" type="array">
+      <items>
+        <item key="twig">true</item>
+      </items>
     </parameter>
   </parameters>
 

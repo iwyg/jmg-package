@@ -130,5 +130,7 @@
     <trustedSite>http://[0-9]+.media.tumblr.(com|de|net)</trustedSite>
   </trustedSites>
 
-  <twig>true</twig>
+  <templating>
+    <twig>true</twig>
+  </templating>
 </config>

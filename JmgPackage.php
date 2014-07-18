@@ -54,6 +54,9 @@ class JmgPackage extends Package implements ExportResourceInterface
      */
     public function registerCommands(Console $console)
     {
+        $container = $console->getApplication()->getContainer();
+
+        $console->add($container->get('command.jmg:clearcache'));
     }
 
     /**

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container>
+  <services>
+    <service id="command.jmg:clearcache" class="Thapp\Jmg\Console\ClearCacheCommand">
+      <arguments>
+        <argument>$jmg.cache_clearer</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.cache_clearer" class="Thapp\Jmg\Cache\Clearer">
+      <arguments>
+        <argument>$jmg.cache_resolver</argument>
+        <argument>$console.events</argument>
+      </arguments>
+    </service>
+  </services>
+</container>

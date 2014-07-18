@@ -5,6 +5,7 @@
     <import>drivers.xml</import>
     <import>cache.xml</import>
     <import>templating.xml</import>
+    <import>commands.xml</import>
   </imports>
 
   <parameters>
