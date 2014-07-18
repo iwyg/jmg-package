@@ -92,7 +92,6 @@ class Clearer
     {
         $cache = $this->findCache($alias);
 
-        var_dump($image, $alias);
         if (!$cache->delete($image)) {
             $this->events->dispatch(Events::CLEARED_INFO, new ClearEvent('Nothing to delete.'));
 
