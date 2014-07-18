@@ -12,6 +12,7 @@
 namespace Thapp\Jmg\Controller;
 
 use \Symfony\Component\HttpFoundation\Request;
+use \Thapp\JitImage\Response\ImageResponse;
 use \Thapp\JitImage\Resolver\ResolverInterface;
 use \Selene\Components\Routing\Controller\Controller;
 use \Thapp\JitImage\Resolver\ParameterResolverInterface;
@@ -26,6 +27,8 @@ class ImageController extends Controller
 {
     use ImageControllerTrait {
         ImageControllerTrait::getImage as private getImageAction;
+        ImageControllerTrait::getResource as private getResourceAction;
+        ImageControllerTrait::getCached as private getCachedAction;
     }
 
     /**
@@ -44,10 +47,10 @@ class ImageController extends Controller
      * getImage
      *
      * @param Request $request
-     * @param mixed $path
-     * @param mixed $params
-     * @param mixed $source
-     * @param mixed $filter
+     * @param string $path
+     * @param string $params
+     * @param string $source
+     * @param string $filter
      *
      * @return ImageResponse
      */
@@ -56,5 +59,39 @@ class ImageController extends Controller
         $this->setRequest($request);
 
         return $this->getImageAction($path, $params, $source, $filter);
+    }
+
+    /**
+     * getAlias
+     *
+     * @param Request $request
+     * @param string $path
+     * @param string $alias
+     * @param string $source
+     *
+     * @return Response
+     */
+    public function getAlias(Request $request, $path, $alias, $source)
+    {
+        $this->setRequest($request);
+        list ($params, $filter) = $this->recipes->resolve($alias);
+
+        return $this->getImageAction($path, $params, $source, $filter);
+    }
+
+    /**
+     * getAlias
+     *
+     * @param Request $request
+     * @param string $path
+     * @param string $id
+     *
+     * @return Response
+     */
+    public function getCached(Request $request, $key, $path, $suffix)
+    {
+        $this->setRequest($request);
+
+        return $this->getCachedAction($path, $key);
     }
 }

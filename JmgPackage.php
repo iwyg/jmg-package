@@ -18,7 +18,8 @@ use \Thapp\Jmg\Process\RegisterImageLoader;
 use \Thapp\Jmg\Process\RegisterImageDriver;
 use \Thapp\Jmg\Process\RegisterCaches;
 use \Thapp\Jmg\Process\RegisterResolver;
-use \Thapp\Jmg\Process\RegisterDynamicRoutes;
+use \Thapp\Jmg\Process\RegisterRoutes;
+use \Thapp\Jmg\Process\RegisterTwigExtension;
 
 /**
  * @class JitImagePackage
@@ -39,7 +40,8 @@ class JmgPackage extends Package implements ExportResourceInterface
             ->add(new RegisterImageDriver, ProcessorInterface::BEFORE_OPTIMIZE)
             ->add(new RegisterCaches, ProcessorInterface::BEFORE_OPTIMIZE)
             ->add(new RegisterResolver, ProcessorInterface::OPTIMIZE)
-            ->add(new RegisterDynamicRoutes($builder), ProcessorInterface::BEFORE_OPTIMIZE);
+            ->add(new RegisterTwigExtension, ProcessorInterface::BEFORE_REMOVE)
+            ->add(new RegisterRoutes($builder), ProcessorInterface::BEFORE_OPTIMIZE);
 
     }
 
@@ -73,6 +75,6 @@ class JmgPackage extends Package implements ExportResourceInterface
      */
     public function requires()
     {
-        return ['framework'];
+        return ['framework', 'twig?', 'phptal?'];
     }
 }

@@ -4,12 +4,14 @@
   <imports>
     <import>drivers.xml</import>
     <import>cache.xml</import>
+    <import>templating.xml</import>
   </imports>
 
   <parameters>
     <parameter id="jmg.controller.class">Thapp\Jmg\Controller\ImageController</parameter>
     <parameter id="jmg.resolver_path.class">Thapp\JitImage\Resolver\PathResolver</parameter>
     <parameter id="jmg.resolver_image.class">Thapp\JitImage\Resolver\ImageResolver</parameter>
+    <parameter id="jmg.resolver_recipes.class">Thapp\JitImage\Resolver\RecipeResolver</parameter>
     <parameter id="jmg.image_processor.class">Thapp\JitImage\JitImageProcessor</parameter>
     <parameter id="jmg.constraints.class">Thapp\JitImage\Validator\ModeConstraints</parameter>
   </parameters>
@@ -20,6 +22,13 @@
         <argument>$jmg.resolver_path</argument>
         <argument>$jmg.resolver_image</argument>
       </arguments>
+      <setters>
+        <setter calls="setRecieps">
+          <arguments>
+            <argument>$jmg.resolver_recipes</argument>
+          </arguments>
+        </setter>
+      </setters>
     </service>
 
     <service id="jmg.resolver_path" class="%jmg.resolver_path.class%" internal="true">
@@ -33,6 +42,8 @@
         <argument>%app.null%</argument>
         <argument>$jmg.constraints</argument>
       </arguments>
+    </service>
+    <service id="jmg.resolver_recipes" class="%jmg.resolver_recipes.class%" internal="true">
     </service>
     <service id="jmg.image_processor" class="%jmg.image_processor.class%" internal="true">
       <arguments>

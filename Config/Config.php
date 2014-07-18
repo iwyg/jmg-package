@@ -36,9 +36,37 @@ class Config extends PackageConfiguration
         $this->prepareDrivers($config);
         $this->prepareConstraints($config);
 
-        $this->prepareDynamicRoutes($config);
+        $this->prepareRecipes($config);
         $this->prepareCaches($config);
+
+        $this->prepareDynamicRoutes($config);
+
         $this->prepareTrustedSites($config);
+        $this->prepareTemplating($config);
+    }
+
+    private function prepareTemplating(array $config)
+    {
+        $this->setParameter('jmg.templating', $this->getDefaultUsing($config, 'templating', function () {
+            return $this->getParameter('jmg.templating');
+        }));
+
+        $this->setParameter('jmg.default_path', $this->getDefaultUsing($config, 'default_path', function () {
+            $paths = array_keys($this->getParameter('jmg.paths'));
+            return current($paths);
+        }));
+    }
+
+    /**
+     * prepareRecipes
+     *
+     * @param array $config
+     *
+     * @return void
+     */
+    private function prepareRecipes(array $config)
+    {
+        $this->setParameter('jmg.recipes', $this->getDefault($config, 'recipes', []));
     }
 
     /**
@@ -90,6 +118,11 @@ class Config extends PackageConfiguration
      */
     private function prepareConstraints(array $config)
     {
+        $this->setParameter(
+            'jmg.disable_dynamic_processing',
+            $this->getDefault($config, 'disable_dynamic_processing', false)
+        );
+
         $constraints = [];
 
         foreach ($this->getDefault($config, 'mode_constraints', []) as $key => $value) {

@@ -9,10 +9,13 @@
   ],
   "license":"MIT",
   "require": {
-    "thapp/jitimage":"dev-v0_2"
+    "thapp/jitimage":"dev-v0_2",
+    "selene/di":"dev-development"
   },
   "require-dev": {
-    "phpunit/phpunit":"~4.0"
+    "phpunit/phpunit":"~4.0",
+    "mockery/mockery": "0.9.*@dev",
+    "league/phpunit-coverage-listener":"dev-master"
   },
   "autoload": {
     "psr-4":{

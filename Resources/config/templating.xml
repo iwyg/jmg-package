@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container>
+  <parameters>
+    <parameter id="templating" type="array">
+      <parameters>
+        <parameter key="twig">true</parameter>
+      </parameters>
+    </parameter>
+  </parameters>
+
+  <services>
+    <service id="jmg.image" class="Thapp\JitImage\JitImage">
+      <arguments>
+        <argument>$jmg.resolver_image</argument>
+        <argument>$jmg.resolver_path</argument>
+        <argument>$jmg.resolver_recipes</argument>
+        <argument>%jmg.cache_suffix%</argument>
+        <argument>%jmg.default_path%</argument>
+      </arguments>
+    </service>
+
+    <service id="jmg.extension_twig" class="Thapp\JitImage\Twig\JitImageExtension" internal="true">
+      <arguments>
+        <argument>$jmg.image</argument>
+      </arguments>
+    </service>
+  </services>
+</container>

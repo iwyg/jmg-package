@@ -15,6 +15,7 @@ use \Selene\Components\DI\Reference;
 use \Selene\Components\DI\ContainerInterface;
 use \Selene\Components\DI\Definition\ServiceDefinition;
 use \Selene\Components\DI\Processor\ProcessInterface;
+use \Selene\Components\Common\Helper\ListHelper;
 
 /**
  * @class RegisterCaches
@@ -74,12 +75,9 @@ class RegisterCaches implements ProcessInterface
     private function registerCaches(array $paths)
     {
         $services = [];
-
         $resolver = $this->container->getDefinition('jmg.cache_resolver');
 
         foreach ($paths as $path => $cache) {
-
-            $service = 'jmg.cache_filesystem';
 
             if (isset($cache['enabled']) && true !== $cache['enabled']) {
                 continue;
@@ -89,14 +87,19 @@ class RegisterCaches implements ProcessInterface
 
                 $services[] = $cache['service'];
 
-                if ($this->isKnowenCache($cache['service'])) {
-                    $this->setupKnowenCache($cache['service'], $path, $cache, $resolver);
-                } else {
+                if (!$this->isKnowenCache($cache['service'])) {
+
                     $this->setupForeignCache($cache['service'], $path, $cache, $resolver);
+
+                    continue;
                 }
-            } else {
-                $this->setupKnowenCache($service, $path, $cache, $resolver);
+
+                $this->setupKnowenCache($cache['service'], $path, $cache, $resolver);
+
+                continue;
             }
+
+            $this->setupKnowenCache('jmg.cache_filesystem', $path, $cache, $resolver);
         }
 
         $this->prepareMemcachedClinet($services);
