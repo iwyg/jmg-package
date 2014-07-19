@@ -173,9 +173,11 @@ class RegisterRoutes implements ProcessInterface
         $sourceRegxp,
         $filterRegxp
     ) {
-        $route = $routes->get('jmg.'.strtr($path, ['/' => '.']), rtrim($path, '/').$pattern, []);
-
-        $route->setAction('jmg.controller:getImage');
+        $route = $routes->get(
+            'jmg.'.strtr($path, ['/' => '.']),
+            rtrim($path, '/').$pattern,
+            'jmg.controller:getImage'
+        );
 
         $route->setConstraint('params', $paramsRegxp);
         $route->setConstraint('source', $sourceRegxp);
@@ -200,8 +202,7 @@ class RegisterRoutes implements ProcessInterface
     {
         $pattern = $alias . '/{source}';
 
-        $route = $routes->get('jmg.recipes_'.$name, $pattern, []);
-        $route->setAction('jmg.controller:getAlias');
+        $route = $routes->get('jmg.recipes_'.$name, $pattern, 'jmg.controller:getAlias');
         $route->setDefault('path', $path);
         $route->setDefault('alias', $alias);
     }
@@ -222,8 +223,7 @@ class RegisterRoutes implements ProcessInterface
 
         $name = 'jmg.' . strtr($path, ['/' => '_']);
 
-        $route = $routes->get($name, $path . '/{key}', []);
-        $route->setAction('jmg.controller:getCached');
+        $route = $routes->get($name, $path . '/{key}', 'jmg.controller:getCached');
 
         $route->setConstraint('key', '(.*\/){1}.*');
 
