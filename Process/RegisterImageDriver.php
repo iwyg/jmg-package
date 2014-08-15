@@ -11,9 +11,9 @@
 
 namespace Thapp\Jmg\Process;
 
-use \Selene\Components\DI\ContainerInterface;
-use \Selene\Components\DI\Definition\ServiceDefinition;
-use \Selene\Components\DI\Processor\ProcessInterface;
+use \Selene\Module\DI\ContainerInterface;
+use \Selene\Module\DI\Definition\ServiceDefinition;
+use \Selene\Module\DI\Processor\ProcessInterface;
 
 /**
  * @class RegisterImageLoaders

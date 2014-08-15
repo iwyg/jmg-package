@@ -14,7 +14,7 @@ namespace Thapp\Jmg\Controller;
 use \Symfony\Component\HttpFoundation\Request;
 use \Thapp\JitImage\Response\ImageResponse;
 use \Thapp\JitImage\Resolver\ResolverInterface;
-use \Selene\Components\Routing\Controller\Controller;
+use \Selene\Module\Routing\Controller\Controller;
 use \Thapp\JitImage\Resolver\ParameterResolverInterface;
 use \Thapp\JitImage\Controller\Traits\ImageControllerTrait;
 

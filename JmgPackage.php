@@ -8,12 +8,12 @@
 
 namespace Thapp\Jmg;
 
-use \Selene\Components\Package\Package;
-use \Selene\Components\Package\ExportResourceInterface;
-use \Selene\Components\Package\FileRepositoryInterface;
-use \Selene\Components\DI\BuilderInterface;
-use \Selene\Components\DI\Processor\ProcessorInterface;
-use \Selene\Components\Console\Application as Console;
+use \Selene\Module\Package\Package;
+use \Selene\Module\Package\ExportResourceInterface;
+use \Selene\Module\Package\FileRepositoryInterface;
+use \Selene\Module\DI\BuilderInterface;
+use \Selene\Module\DI\Processor\ProcessorInterface;
+use \Selene\Adapter\Console\Application as Console;
 use \Thapp\Jmg\Process\RegisterImageLoader;
 use \Thapp\Jmg\Process\RegisterImageDriver;
 use \Thapp\Jmg\Process\RegisterCaches;
@@ -40,9 +40,8 @@ class JmgPackage extends Package implements ExportResourceInterface
             ->add(new RegisterImageDriver, ProcessorInterface::BEFORE_OPTIMIZE)
             ->add(new RegisterCaches, ProcessorInterface::BEFORE_OPTIMIZE)
             ->add(new RegisterResolver, ProcessorInterface::OPTIMIZE)
-            ->add(new RegisterTwigExtension, ProcessorInterface::BEFORE_REMOVE)
+            //->add(new RegisterTwigExtension, ProcessorInterface::BEFORE_REMOVE)
             ->add(new RegisterRoutes($builder), ProcessorInterface::BEFORE_OPTIMIZE);
-
     }
 
     /**

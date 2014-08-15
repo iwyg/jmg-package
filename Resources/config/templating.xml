@@ -23,6 +23,7 @@
       <arguments>
         <argument>$jmg.image</argument>
       </arguments>
+      <meta name="twig.extension"/>
     </service>
   </services>
 </container>

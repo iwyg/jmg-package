@@ -11,9 +11,9 @@
 
 namespace Thapp\Jmg\Console;
 
-use \Selene\Components\Console\Command;
-use \Selene\Components\Events\SubscriberInterface;
-use \Selene\Packages\Workspace\PackageGenerator;
+use \Selene\Adapter\Console\Command;
+use \Selene\Module\Events\SubscriberInterface;
+use \Selene\Package\Workspace\PackageGenerator;
 use \Symfony\Component\Console\Input\InputOption;
 use \Symfony\Component\Console\Input\InputArgument;
 use \Thapp\Jmg\Cache\Clearer;

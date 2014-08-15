@@ -12,13 +12,13 @@
 namespace Thapp\Jmg\Process;
 
 use \Thapp\JitImage\ProviderTrait;
-use \Selene\Components\DI\BuilderInterface;
-use \Selene\Components\DI\ContainerInterface;
-use \Selene\Components\DI\Definition\ServiceDefinition;
-use \Selene\Components\DI\Processor\ProcessInterface;
-use \Selene\Components\Routing\Loader\CallableLoader;
-use \Selene\Components\Routing\RouteBuilder;
-use \Selene\Components\Routing\Route;
+use \Selene\Module\DI\BuilderInterface;
+use \Selene\Module\DI\ContainerInterface;
+use \Selene\Module\DI\Definition\ServiceDefinition;
+use \Selene\Module\DI\Processor\ProcessInterface;
+use \Selene\Module\Routing\Loader\CallableLoader;
+use \Selene\Module\Routing\RouteBuilder;
+use \Selene\Module\Routing\Route;
 
 /**
  * @class RegisterDynamicRoutes
@@ -238,7 +238,7 @@ class RegisterRoutes implements ProcessInterface
      */
     private function getLoader()
     {
-        return new CallableLoader($this->builder, $this->container->get('routing.routes'));
+        return new CallableLoader($this->container->get('routing.routes'), $this->builder);
     }
 
     /**

@@ -11,11 +11,11 @@
 
 namespace Thapp\Jmg\Process;
 
-use \Selene\Components\DI\Reference;
-use \Selene\Components\DI\ContainerInterface;
-use \Selene\Components\DI\Definition\ServiceDefinition;
-use \Selene\Components\DI\Processor\ProcessInterface;
-use \Selene\Components\Common\Helper\ListHelper;
+use \Selene\Module\DI\Reference;
+use \Selene\Module\DI\ContainerInterface;
+use \Selene\Module\DI\Definition\ServiceDefinition;
+use \Selene\Module\DI\Processor\ProcessInterface;
+use \Selene\Module\Common\Helper\ListHelper;
 
 /**
  * @class RegisterCaches

@@ -11,7 +11,7 @@
 
 namespace Thapp\Jmg\Cache\Events;
 
-use \Selene\Components\Events\Event;
+use \Selene\Module\Events\Event;
 
 /**
  * @class ClearEvent

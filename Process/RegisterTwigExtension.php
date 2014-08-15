@@ -11,9 +11,9 @@
 
 namespace Thapp\Jmg\Process;
 
-use \Selene\Components\DI\Reference;
-use \Selene\Components\DI\ContainerInterface;
-use \Selene\Components\DI\Processor\ProcessInterface;
+use \Selene\Module\DI\Reference;
+use \Selene\Module\DI\ContainerInterface;
+use \Selene\Module\DI\Processor\ProcessInterface;
 
 /**
  * @class RegisterTwigExtension

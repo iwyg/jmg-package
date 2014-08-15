@@ -11,7 +11,7 @@
 
 namespace Thapp\Jmg\Cache;
 
-use \Selene\Components\Events\Dispatcher;
+use \Selene\Module\Events\Dispatcher;
 use \Thapp\Image\Cache\CacheInterface;
 use \Thapp\JitImage\Resolver\ResolverInterface;
 use \Thapp\Jmg\Cache\Events\ClearEvent;

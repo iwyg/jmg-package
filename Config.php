@@ -6,10 +6,10 @@
  * @author Thomas Appel <mail@thomas-appel.com>
  */
 
-namespace Thapp\Jmg\Config;
+namespace Thapp\Jmg;
 
-use \Selene\Components\DI\BuilderInterface;
-use \Selene\Components\Package\PackageConfiguration;
+use \Selene\Module\DI\BuilderInterface;
+use \Selene\Module\Package\PackageConfiguration;
 
 /**
  * @class Config
@@ -24,14 +24,8 @@ class Config extends PackageConfiguration
      *
      * @return void
      */
-    public function setup(BuilderInterface $builder, array $values = [])
+    public function setup(BuilderInterface $builder, array $config = [])
     {
-        $loader = $this->getConfigLoader($builder);
-        $loader->load('services.xml');
-
-        $config = $this->mergeValues($values);
-
-
         $this->prepareLoaders($config);
         $this->prepareDrivers($config);
         $this->prepareConstraints($config);
@@ -55,6 +49,11 @@ class Config extends PackageConfiguration
             $paths = array_keys($this->getParameter('jmg.paths'));
             return current($paths);
         }));
+    }
+
+    protected function getResources()
+    {
+        return ['services.xml'];
     }
 
     /**
